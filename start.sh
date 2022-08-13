@@ -4,4 +4,4 @@ cd stella_vslam
 git submodule update -i --recursive
 docker build -t stella_vslam-desktop -f Dockerfile.desktop .
 cd ~/Surveillance-Center && \
-docker build .
+docker build -t surveillancecenter .
