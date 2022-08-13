@@ -1,0 +1,7 @@
+{
+  "name": "Surveillance-Center",
+  "version": "1.0.0",
+  "dependencies": {
+    "msgpack5": "^6.0.2"
+  }
+}
