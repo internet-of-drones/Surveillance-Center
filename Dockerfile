@@ -10,4 +10,6 @@ RUN export FILE_ID="1TVf2D2QvMZPHsFoTb7HNxbXclPoFMGLX" && gdown "https://drive.g
   unzip aist_living_lab_2.zip
 
 RUN mkdir /maps/
-COPY test.sh .
+COPY update-map.sh .
+COPY localize.sh .
+COPY start.sh .
