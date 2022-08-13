@@ -6,6 +6,7 @@ let msgpack = require('msgpack5')() // namespace our extensions
 
 let readStream = fs.readFileSync(path.resolve(__dirname, "./maps/map-12.msg"));
 
+let csv = ''
 // show multiple objects decoded from stream
 let pointCloud2 = decode(readStream);
 let {
@@ -25,5 +26,11 @@ for (const landmarksKey in landmarks) {
         pos_w: [ x, y, z ],
         ref_keyfrm
     } = landmarks[landmarksKey]
-    console.log(x, y, z)
+    console.log(
+        Math.round(x),
+        Math.round(y),//height
+        Math.round(z)
+    );
+    csv += `${x}.${y}\n`
 }
+fs.writeFileSync(path.resolve(__dirname, "./pointcloud.csv"), csv)
