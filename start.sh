@@ -17,7 +17,7 @@ docker run -it --rm \
 #
 docker run -it --rm \
  -e DISPLAY="$DISPLAY" \
- -e MAP_ID="$MAP_ID " \
+ -e MAP_ID="$MAP_ID" \
  -e MOVIE_PATH="/stella_vslam/build/aist_living_lab_2/video.mp4" \
  -v /tmp/.X11-unix/:/tmp/.X11-unix:ro \
  -v "$(pwd)"/maps/:/maps/ \
