@@ -26,11 +26,15 @@ for (const landmarksKey in landmarks) {
         pos_w: [ x, y, z ],
         ref_keyfrm
     } = landmarks[landmarksKey]
+    if (Math.abs(y) < 0.2) {
+        continue;
+    }
     console.log(
-        Math.round(x),
-        Math.round(y),//height
-        Math.round(z)
+        // Math.round(x),
+        Math.round(y), //height
+        // Math.round(z),
     );
+
     csv += `${x},${y}\n`
 }
 fs.writeFileSync(path.resolve(__dirname, "./pointcloud.csv"), csv)
