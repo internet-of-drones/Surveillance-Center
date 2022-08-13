@@ -1,4 +1,4 @@
-./run_video_slam --load-map \
+./run_video_slam --auto-term --load-map --disable-mapping \
     -v ./orb_vocab.fbow \
     -c ../example/aist/equirectangular.yaml \
     -m ${MOVIE_PATH} \

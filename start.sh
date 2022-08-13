@@ -22,4 +22,4 @@ docker run -it --rm \
  -v /tmp/.X11-unix/:/tmp/.X11-unix:ro \
  -v "$(pwd)"/maps/:/maps/ \
   surveillancecenter localize.sh
-#  --disable-mapping
+#
