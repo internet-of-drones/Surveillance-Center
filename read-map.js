@@ -7,4 +7,23 @@ let msgpack = require('msgpack5')() // namespace our extensions
 let readStream = fs.readFileSync(path.resolve(__dirname, "./maps/map-12.msg"));
 
 // show multiple objects decoded from stream
-console.log(decode(readStream))
+let pointCloud2 = decode(readStream);
+let {
+    cameras,
+    frame_next_id,
+    keyframe_next_id,
+    keyframes,
+    landmark_next_id,
+    landmarks,
+    orb_params
+} = pointCloud2;
+for (const landmarksKey in landmarks) {
+    let {
+        // '1st_keyfrm',
+        n_fnd,
+        n_vis,
+        pos_w: [ x, y, z ],
+        ref_keyfrm
+    } = landmarks[landmarksKey]
+    console.log(x, y, z)
+}
