@@ -9,7 +9,7 @@ DISPLAY=$(docker inspect cy-open | jq -r ".[0].NetworkSettings.Networks.bridge.I
 export MAP_ID="12"
 # shellcheck disable=SC2046
 rm $(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
-(mkdir /ip-cam/ || true) && cd /ip-cam/ && openRTSP -D 1 -B 10000000 -b 10000000 -q -Q -F capture-$MAP_ID- -d 10 -P 10 -t -u admin a12345678 rtsp://192.168.68.242:554/onvif1
+(mkdir /ip-cam/ || true) && cd /ip-cam/ && openRTSP -D 1 -B 10000000 -b 10000000 -q -Q -F capture-$MAP_ID- -d 60 -P 60 -t -u admin a12345678 rtsp://192.168.68.242:554/onvif1
 record=$(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
 # --entrypoint=bash \
 docker run -it --rm \
