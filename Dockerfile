@@ -8,6 +8,7 @@ RUN export FILE_ID="1d8kADKWBptEqTF7jEVhKatBEdN7g0ikY" && gdown "https://drive.g
 
 RUN export FILE_ID="1TVf2D2QvMZPHsFoTb7HNxbXclPoFMGLX" && gdown "https://drive.google.com/uc?id=${FILE_ID}" -O aist_living_lab_2.zip && \
   unzip aist_living_lab_2.zip
+RUN apt-get install livemedia-utils -y
 
 RUN mkdir /maps/
 COPY update-map.sh .

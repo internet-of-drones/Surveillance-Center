@@ -7,17 +7,24 @@ cd ~/Surveillance-Center && \
 docker build -t surveillancecenter .
 DISPLAY=$(docker inspect cy-open | jq -r ".[0].NetworkSettings.Networks.bridge.IPAddress")":0.0"
 export MAP_ID="12"
+# shellcheck disable=SC2046
+rm $(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
+(mkdir /ip-cam/ || true) && cd /ip-cam/ && openRTSP -D 1 -B 10000000 -b 10000000 -q -Q -F capture-$MAP_ID- -d 10 -P 10 -t -u admin a12345678 rtsp://192.168.68.242:554/onvif1
+record=$(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
+# --entrypoint=bash \
 docker run -it --rm \
  -e DISPLAY="$DISPLAY" \
  -e MAP_ID="$MAP_ID" \
- -e MOVIE_PATH="/stella_vslam/build/aist_living_lab_1/video.mp4" \
+ -e MOVIE_PATH="$record" \
  -v "$(pwd)"/maps/:/maps/ \
+ -v "/ip-cam/:/ip-cam/" \
   surveillancecenter update-map.sh
 #
 docker run -it --rm \
  -e DISPLAY="$DISPLAY" \
  -e MAP_ID="$MAP_ID" \
- -e MOVIE_PATH="/stella_vslam/build/aist_living_lab_2/video.mp4" \
+ -e MOVIE_PATH="$record" \
  -v "$(pwd)"/maps/:/maps/ \
+ -v "/ip-cam/:/ip-cam/" \
   surveillancecenter localize.sh
 #
