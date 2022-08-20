@@ -16,6 +16,8 @@ docker run -it --rm \
   surveillancecenter capture.sh
 record=$(find /ip-cam/ -type f -name "capture-$MAP_ID-*" | head -1)
 echo "record = $record"
+ffmpeg -y -i "$record" /ip-cam/capture-$MAP_ID.mp4
+record="/ip-cam/capture-$MAP_ID.mp4"
 docker run -it --rm \
  -e DISPLAY="$DISPLAY" \
  -e MAP_ID="$MAP_ID" \
