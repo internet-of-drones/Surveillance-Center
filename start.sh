@@ -14,14 +14,15 @@ docker run -it --rm \
  -e MAP_ID="$MAP_ID" \
  -v "/ip-cam/:/ip-cam/" \
   surveillancecenter capture.sh
-record=$(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
+record=$(find /ip-cam/ -type f -name "capture-$MAP_ID-*" | head -1)
+echo "record = $record"
 docker run -it --rm \
  -e DISPLAY="$DISPLAY" \
  -e MAP_ID="$MAP_ID" \
  -e MOVIE_PATH="$record" \
  -v "$(pwd)"/maps/:/maps/ \
  -v "/ip-cam/:/ip-cam/" \
-  surveillancecenter update-map.sh
+  surveillancecenter update-map.sh && \
 #
 docker run -it --rm \
  -e DISPLAY="$DISPLAY" \
