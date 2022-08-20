@@ -7,8 +7,14 @@ cd ~/Surveillance-Center && \
 docker build -t surveillancecenter .
 DISPLAY=$(docker inspect cy-open | jq -r ".[0].NetworkSettings.Networks.bridge.IPAddress")":0.0"
 export MAP_ID="12"
-record=$(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
+rm $(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
 # --entrypoint=bash \
+docker run -it --rm \
+ -e DISPLAY="$DISPLAY" \
+ -e MAP_ID="$MAP_ID" \
+ -v "/ip-cam/:/ip-cam/" \
+  surveillancecenter capture.sh
+record=$(find /ip-cam/ -type f -name "capture-$MAP_ID-*")
 docker run -it --rm \
  -e DISPLAY="$DISPLAY" \
  -e MAP_ID="$MAP_ID" \

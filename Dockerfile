@@ -13,4 +13,5 @@ RUN apt-get install livemedia-utils -y
 RUN mkdir /maps/
 COPY update-map.sh .
 COPY localize.sh .
+COPY capture.sh .
 COPY start.sh .
